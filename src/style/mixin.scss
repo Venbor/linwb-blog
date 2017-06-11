@@ -1,0 +1,81 @@
+//定位全屏
+@mixin cover{
+  position:absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right:0;
+}
+
+//定位上下左右居中
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//定位上下居中
+@mixin centerY {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+//定位左右居中
+@mixin centerX {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*清除浮动*/
+@mixin clear{
+  zoom: 1;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+    visibility: hidden; height: 0;
+  }
+}
+
+/*单行超出用省略号代替*/
+@mixin lineone {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*多行(2)超出用省略号代替*/
+@mixin lineN {
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/*设定阴影类型-设定阴影类型*/
+@mixin us {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .3)
+}
+
+/*【背景比例放大铺满，失真，等比例铺满整个容器，图片不完全显示】*/
+@mixin imgcover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/*【背景比例缩小铺满，失真，可能没有铺满，将图片缩放到宽度或高度正好适应定义背景的区域为止，图片完全显示】*/
+@mixin imgcontain {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/*横向和纵向都100%，拉伸填充满容器*/
+@mixin imgall {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}

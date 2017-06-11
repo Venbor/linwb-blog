@@ -1,0 +1,88 @@
+body, div, span, header, footer, nav, section, aside, article, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, a, i, b, p, pre, th, td, form, input, button, textarea, select, figure, figcaption, hr { margin: 0; padding: 0; font-family: "Microsoft Yahei", sans-serif, arial; font-style: normal; box-sizing: border-box; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+dl, ul, ol, li { list-style: none; }
+img { border: 0; display: block; }
+select, input { vertical-align: middle; }
+table { border-collapse: collapse; border-spacing: 0; }
+textarea { -webkit-appearance: none; }
+input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] { -webkit-appearance: none; }
+a { text-decoration: none; }
+a:hover { text-decoration: none; }
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar { width: 0px; height: 0px; background-color: #F5F5F5; }
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0); border-radius: 10px; background-color: #F5F5F5; }
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb { border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3); background-color: #555; }
+
+/*定于为弹性布局，主轴左到右水平排列（默认），*/
+.ub { display: flex !important; }
+
+/*定于为弹性布局，主轴上到下垂直排列*/
+.ubY { display: flex !important; flex-direction: column; }
+
+/*主轴对齐方式 flex-start(默认顶部或左对齐)、center(中间对齐)、flex-end(底部或右对齐)*/
+.ub-center { justify-content: center; }
+.ub-end { justify-content: flex-end; }
+
+/*交叉轴对齐方式（item有高度时体现） stretch(默认未设置高度或设为auto，将占满整个容器的高度)*/
+
+/*交叉轴起点对齐*/
+.ub-a { align-items: flex-start; }
+
+/*交叉轴起点对齐*/
+.ub-ac { align-items: center; }
+
+/*交叉轴终点对齐*/
+.ub-ae { align-items: flex-end; }
+
+/*弹性布局item属性*/
+
+/*定义元素空间大小分配比例为1*/
+.ub-f1 { flex: 1; }
+
+/*定义元素空间大小分配比例为2*/
+.ub-f2 { flex: 2; }
+
+/*定义元素空间大小分配比例为3*/
+.ub-f3 { flex: 3; }
+
+/*定义元素空间大小分配比例为4*/
+.ub-f4 { flex: 4; }
+
+/* 定位全屏 */
+.cover { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+
+/* 定位上下左右居中 */
+.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+/* 定位上下居中 */
+.centerY { position: absolute; top: 50%; transform: translateY(-50%); }
+
+/* 定位左右居中 */
+.centerX { position: absolute; left: 50%; transform: translateX(-50%); }
+
+/*清除浮动*/
+.clear { zoom: 1; }
+.clear:after { content: ''; display: block; clear: both; visibility: hidden; height: 0; }
+
+/*单行超出用省略号代替*/
+.lineone { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/*多行(2)超出用省略号代替*/
+.lineN { text-overflow: ellipsis; -webkit-line-clamp: 2; overflow: hidden; }
+
+/*【背景比例放大铺满，失真，等比例铺满整个容器，图片不完全显示】*/
+.imgcover { background-size: cover; background-repeat: no-repeat; background-position: center; }
+
+/*【背景比例缩小铺满，失真，可能没有铺满，将图片缩放到宽度或高度正好适应定义背景的区域为止，图片完全显示】*/
+.imgcontain { background-size: contain; background-repeat: no-repeat; background-position: center; }
+
+/*横向和纵向都100%，拉伸填充满容器*/
+.imgall { background-size: 100% 100%; background-repeat: no-repeat; background-position: center; }
+
+/*设定阴影类型-设定阴影类型*/
+.us { box-shadow: 0 1px 4px rgba(0, 0, 0, .3) }

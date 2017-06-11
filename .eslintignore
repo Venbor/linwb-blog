@@ -1,0 +1,13 @@
+build/*.js
+config/*.js
+node_modules
+/node_modules/**
+*.log
+*.md
+.babelrc
+.editorconfig
+.eslintrc
+.eslintignore
+.gitignore
+dist
+iconfont.js
