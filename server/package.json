@@ -1,0 +1,20 @@
+{
+  "name": "linwb_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "formidable": "^1.1.1",
+    "jsonwebtoken": "^7.3.0",
+    "mysql": "^2.13.0",
+    "nodemailer": "^3.1.8",
+    "pm2": "^2.5.0",
+    "serve-favicon": "^2.4.2"
+  }
+}

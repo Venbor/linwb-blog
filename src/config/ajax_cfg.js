@@ -3,7 +3,8 @@ import store from '../store';
 import router from '../router';
 // axios全局配置
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = '/proxy_api';
+// axios.defaults.baseURL = '/proxy_api';
+axios.defaults.baseURL = '/api';
 // 请求拦截器
 axios.interceptors.request.use(
     (req) => {

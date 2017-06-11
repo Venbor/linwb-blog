@@ -37,17 +37,19 @@
 </div>
       </div>
 </div>
-
+<loading v-if='isLoading'></loading>
 </div>
 </template>
 <script>
 import artEdit from './artEdit.vue';
 import headTop from '../../../components/headTop.vue';
 import leftGuide from './leftGuide.vue';
+import loading from '../../../components/loading.vue';
 
 export default{
   data() {
     return {
+      isLoading: false,
       tableData: [],
       total: null,
       page: 1,
@@ -55,8 +57,9 @@ export default{
       data: '',
     };
   },
-  components: { artEdit, headTop, leftGuide },
+  components: { artEdit, headTop, leftGuide, loading },
   mounted: function () {
+    this.isLoading = true;
     this.loaddata();
   },
   methods: {
@@ -65,6 +68,7 @@ export default{
       this.$http.post('/', { act: 'articlelist', pagesize: 20, page: this.page }).then((res) => {
         _this.tableData = res.data.data;
         _this.total = res.data.total;
+        _this.isLoading = false;
       })
                   .catch((error) => {
                     console.error(error);

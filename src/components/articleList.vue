@@ -8,7 +8,7 @@
                 <p class="digest">{{item.digest}}</p>
                 <p class="autor">
                     <span class="f_l"><a href="javascript:void(0)">作者:{{$store.state.userInfo.username}}</a></span>
-                    <span class="f_l"> 浏览({{item.hits}})</span>
+                   <!--  <span class="f_l"> 浏览({{item.hits}})</span> -->
                     <span class="f_r"><i class="el-icon-date"></i> {{item.updatatime}}</span>
                 </p>
           </router-link>
@@ -16,43 +16,51 @@
     <div class="page">
           <el-pagination layout="prev, pager, next" :page-size='12' :total="total" @current-change='currentpage'></el-pagination>
     </div>
+     <loading v-if='isLoading'></loading>
 </div>
 </template>
 <script>
-  export default{
-    data() {
-      return {
-        datalist: [],
-        total: 0,
-        page: 1,
-      };
-    },
-    created: function () {
+import loading from './loading.vue';
+
+export default{
+  data() {
+    return {
+      datalist: [],
+      total: 0,
+      page: 1,
+      isLoading: false,
+    };
+  },
+  components: { loading },
+  created: function () {
+    const _this = this;
+    this.$on('checklist', function () {
+      this.isLoading = true;
+      this.total = 0;
+      this.page = 1;
+      _this.loaddata();
+    });
+  },
+  mounted: function () {
+    this.isLoading = true;
+    this.loaddata();
+  },
+  methods: {
+   // 文章列表加载
+    loaddata: function () {
       const _this = this;
-      this.$on('checklist', function () {
-        this.total = 0;
-        this.page = 1;
-        _this.loaddata();
-      });
+      this.$http.post('/', { act: 'articlelist', columns: this.$store.state.columns, page: this.page }).then((response) => {
+        _this.datalist = response.data.data;
+        _this.total = response.data.total;
+        _this.isLoading = false;
+      }).catch((err) => { console.error(err); });
     },
-    mounted: function () {
+    // 切换分页
+    currentpage: function (value) {
+      this.page = value;
       this.loaddata();
     },
-    methods: {
-     // 文章列表加载
-      loaddata: function () {
-        const _this = this;
-        this.$http.post('/', { act: 'articlelist', columns: this.$store.state.columns, page: this.page }).then((response) => {
-          _this.datalist = response.data.data;
-          _this.total = response.data.total;
-        }).catch((err) => { console.error(err); });
-      },
-      // 切换分页
-      currentpage: function (value) {
-        this.page = value;
-        this.loaddata();
-      },
-    },
+  },
 };
 </script>
 

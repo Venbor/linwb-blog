@@ -48,18 +48,18 @@
           </el-dialog>
           </div>
       </div>
-</div>
-
-
-
+  </div>
+<loading v-if='isLoading'></loading>
 </div>
 </template>
 <script>
 import headTop from '../../../components/headTop.vue';
+import loading from '../../../components/loading.vue';
 
 export default{
   data() {
     return {
+      isLoading: false,
       tableData: [],
       dialogtitle: '',
       formLabelWidth: '100px',
@@ -73,8 +73,9 @@ export default{
 
     };
   },
-  components: { headTop },
+  components: { headTop, loading },
   mounted: function () {
+    this.isLoading = true;
     this.loaddata();
   },
   methods: {
@@ -82,6 +83,7 @@ export default{
       const _this = this;
       this.$http.post('/', { act: 'userdetail' }).then((res) => {
         _this.tableData = res.data.data.nav;
+        _this.isLoading = false;
       })
                   .catch((error) => {
                     console.error(error);

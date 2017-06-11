@@ -47,14 +47,17 @@
 	   </div>
    </div>
  </div>
+    <loading v-if='isLoading'></loading>
 </div>
 </template>
 <script>
 import headTop from '../../components/headTop.vue';
+import loading from '../../components/loading.vue';
 
 export default{
   data() {
     return {
+      isLoading: false,
       email: '',
       username: '',
       form: {
@@ -68,8 +71,9 @@ export default{
       imageUrl: '',
     };
   },
-  components: { headTop },
+  components: { headTop, loading },
   mounted: function () {
+    this.isLoading = true;
     this.loaddata();
   },
   methods: {
@@ -93,6 +97,7 @@ export default{
       this.$http.post('/', { act: 'userdetail' })
                   .then((response) => {
                     if (response.data.result) {
+                      _this.isLoading = false;
                       _this.form.username = response.data.data.username;
                       _this.form.signature = response.data.data.signature;
                       _this.form.introduce = response.data.data.introduce;

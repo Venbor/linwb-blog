@@ -17,6 +17,7 @@
               </div>
          </div>
          <my-footer></my-footer>
+         <loading v-if='isLoading'></loading>
     </div>
   </div>
 </template>
@@ -27,10 +28,12 @@ import '../../style/highlight.sublime.css';
 import headTop from '../../components/headTop.vue';
 import headNav from '../../components/headNav.vue';
 import myFooter from '../../components/myFooter.vue';
+import loading from '../../components/loading.vue';
 
 export default {
   data() {
     return {
+      isLoading: false,
       username: '',
       title: '',
       updatatime: '',
@@ -38,8 +41,9 @@ export default {
       hits: '',
     };
   },
-  components: { headTop, headNav, myFooter },
+  components: { headTop, headNav, myFooter, loading },
   mounted: function () {
+    this.isLoading = true;
     this.loaddata();
   },
   methods: {
@@ -50,6 +54,7 @@ export default {
         _this.updatatime = response.data.data.updatatime;
         _this.text = _this.rendermaked(response.data.data.text);
         _this.hits = response.data.data.hits;
+        this.isLoading = false;
       }).catch((err) => { console.error(err); });
     },
     checknav: function () {
